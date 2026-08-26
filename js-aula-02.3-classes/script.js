@@ -31,3 +31,22 @@ const carroEsportivo = new Carro("Ferrari", "Spider", "2026");
 document.write(`
     <p>O carro esportivo ${carroEsportivo.marca} modelo ${carroEsportivo.modelo} é do ano ${carroEsportivo.ano} e quando ele acelera ele faz ${carroEsportivo.acelerar()}</p>
     `);
+
+// Criando uma nova INSTÂNCIA : Carro Conversível
+const carroConversivel = new Carro();
+carroConversivel.marca = "Chevrolet";
+carroConversivel.modelo = "Camaro";
+carroConversivel.ano = "2026";
+
+// Adicionando um NOVO ATRIBUTO (não previsto na classe)
+carroConversivel.corNeon = "Azul";
+// Adicionando um NOVO MÉTODO (não previsto na classe)
+carroConversivel.turbo = function () {
+  return "Vrummmmm! O carro está acelerando!!!";
+};
+
+document.write(
+  `O carro ${carroConversivel.marca} ${carroConversivel.modelo} ${carroConversivel.ano} tem neon da cor ${carroConversivel.corNeon}.`,
+);
+
+document.write(`<p>${carroConversivel.turbo()}</p>`);
