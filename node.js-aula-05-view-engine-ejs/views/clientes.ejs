@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de clientes</title>
+</head>
+<body>
+    <a href="/"><< Voltar</a>
+    <br>
+    <h1 style="text-align: center;">Página de clientes</h1>
+    <!-- forEach dentro de uma TABELA -->
+    <table>
+        <tr>
+            <th width="150px">Cliente</th>
+            <th>CPF</th>
+        </tr>
+        <!-- forEach -->
+        <% clientes.forEach(cliente => { %>
+            <tr>
+                <td><%= cliente.nome %></td>
+                <td><%= cliente.cpf %></td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
