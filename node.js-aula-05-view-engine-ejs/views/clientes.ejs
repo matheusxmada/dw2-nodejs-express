@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de clientes</title>
-</head>
-<body>
-    <a href="/"><< Voltar</a>
+<!-- Importando o Cabeçalho -->
+<%- include ('partials/header.ejs') %>
+<!-- Importando a navbar -->
+<%- include ('partials/navbar.ejs') %>
+    <!-- <a href="/"><< Voltar</a> -->
     <br>
-    <h1 style="text-align: center;">Página de clientes</h1>
+    <h4 style="text-align: center;">Página de clientes</h4>
     <!-- forEach dentro de uma TABELA -->
-    <table>
+    <table border="1">
         <tr>
             <th width="150px">Cliente</th>
             <th>CPF</th>
@@ -23,5 +19,5 @@
             </tr>
         <% }) %>
     </table>
-</body>
-</html>
+    <!-- Importando o Rodapé -->
+<%- include ('partials/footer.ejs') %>

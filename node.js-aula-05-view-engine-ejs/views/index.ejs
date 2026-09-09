@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1 style="text-align: center;">Bem-vindo a homepage!</h1>
+<!-- Importando o Cabeçalho -->
+<%- include ('partials/header.ejs') %>
+<!-- Importando a navbar -->
+ <%- include ('partials/navbar.ejs') %>
+    <h4 style="text-align: center;">Bem-vindo a homepage!</h4>
     <br>
-    <p>Menu</p>
+    <!-- <p>Menu</p>
     <ul>
         <li> <a href="/produtos">Produtos</a></li>
         <li> <a href="/servicos">Serviços</a></li>
         <li> <a href="/clientes">Clientes</a></li>
         <li> <a href="/perfil">Perfil</a></li>
-    </ul>
-</body>
-</html>
+    </ul> -->
+
+<!-- Importando imagens -->
+ <img src="./images/imagem.svg" alt="Imagem de capa" witdh="300px">
+
+<!-- Importando o Rodapé -->
+<%- include ('partials/footer.ejs') %>

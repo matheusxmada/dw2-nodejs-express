@@ -8,6 +8,9 @@ const app = express(); // Criando uma instância do Express. Pegando o Express e
 // Configurando o EJS
 app.set("view engine", "ejs"); // EJS renderiza as páginas do site
 
+// Configurando a pasta 'public' para arquivos estáticos
+app.use(express.static("public"));
+
 // AQUI IRÃO AS ROTAS DO SITE:
 
 // ROTA PRINCIPAL
