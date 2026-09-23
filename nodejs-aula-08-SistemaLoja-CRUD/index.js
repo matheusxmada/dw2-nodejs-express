@@ -19,6 +19,14 @@ connection.authenticate().then(() => {
   console.log(`Ocorreu um erro ao se conectar com o banco de dados. Erro: ${error}`);
 });
 
+// CRIANDO O BANCO DE DADOS SE ELE NÃO EXISTIR
+const DB_NAME = "loja";
+connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME};`).then(() => {
+  console.log(`O banco de dados ${DB_NAME} está criado!`)
+}).catch((error) => {
+  console.log(`Ocorreu um erro ao criar o banco de dados. Erro: ${error}`)
+} )
+
 
 // ROTA PRINCIPAL
 app.get("/", function (req, res) {
@@ -31,6 +39,11 @@ import ClienteController from "./controllers/ClienteController.js";
 import ProdutoController from "./controllers/ProdutoController.js";
 // Importando o Controller Pedido
 import PedidosController from "./controllers/PedidosController.js";
+
+// Importando os Models
+// Usa-se ./ já que estamos na raíz. Não precisamos sair da pasta, pois o diretório Models também já está na raíz.
+import Cliente from "./models/Cliente.js";
+import Pedido from "./models/Pedido.js";
 
 // Configurando rotas
 // Inicializando a porta de Cliente

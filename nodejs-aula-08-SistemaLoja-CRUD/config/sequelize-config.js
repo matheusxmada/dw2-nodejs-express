@@ -8,6 +8,7 @@ const connection = new Sequelize({
     host: 'localhost', // 127.0.0.1 host é o local onde o banco será rodado
     username: 'root',
     password: '', // Sem senha
+    database: 'loja',
     timezone: "-03:00", // Fuso horário de Brasília, indica o horário do banco de dados
 });// Instanciando o objeto. connection herda todos os atributos do Sequelize.
 
