@@ -14,6 +14,8 @@
                                 <th>Nome:</th>
                                 <th>CPF:</th>
                                 <th>Endereço:</th>
+                                <!-- Nova coluna de Ações -->
+                                 <th style="text-align: center;" colspan="2">Ações:</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,6 +31,15 @@
                                     <td>
                                         <%= cliente.endereco %>
                                     </td>
+                                    <!-- Botão de editar -->
+                                     <td>
+                                        <a class="btn btn-warning" href="/clientes/editar<%=cliente.id%>">Editar</a>
+                                     </td>
+                                     <!-- Botão de excluir -->
+                                      <td>
+                                        <!-- Passagem de parâmetro na rota. Um parâmetro na rota é uma informação passada/enviada através da URL. Neste caso, cliente.id é um parâmetro. Uma informação "embutida" na rota -->
+                                        <a class="btn btn-danger" href="/clientes/excluir/<%=cliente.id%>" onclick="return confirm('Deseja mesmo excluir o cliente <%= cliente.nome %>?.')">Excluir</a>
+                                      </td>
                                 </tr>
                                 <% }) %>
                         </tbody>
