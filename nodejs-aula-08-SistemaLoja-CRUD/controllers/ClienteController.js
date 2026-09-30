@@ -19,6 +19,26 @@ router.get("/clientes", function (req, res) {
   })
 });
 
+// Rota de trabalho de clientes
+router.post("/clientes/cadastrar", (req, res) => {
+  const nome = req.body.nome;
+  const cpf = req.body.cpf;
+  const endereco = req.body.endereco;
+// Chamando o model para gravar os dados no banco
+// Equivalente ao INSERT INTO
+Cliente.create({
+  nome: nome,
+  cpf: cpf,
+  endereco: endereco,
+})
+  .then(() => {
+    res.redirect("/clientes");
+  })
+  .catch((error) => {
+    console.log(`Ocorreu um erro ao cadastrar o cliente. Erro: ${error}`);
+  });
+  });
+
 // ROTA PARA EXCLUIR UM CLIENTE
 // :id -> Cria um parâmetro na rota
 router.get("/clientes/excluir/:id", (req,res) => {
