@@ -37,7 +37,7 @@ Cliente.create({
   .catch((error) => {
     console.log(`Ocorreu um erro ao cadastrar o cliente. Erro: ${error}`);
   });
-  });
+});
 
 // ROTA PARA EXCLUIR UM CLIENTE
 // :id -> Cria um parâmetro na rota

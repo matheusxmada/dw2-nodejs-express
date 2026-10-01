@@ -27,6 +27,9 @@ connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME};`).then(() => {
   console.log(`Ocorreu um erro ao criar o banco de dados. Erro: ${error}`)
 } )
 
+// Configurando o express para permitir dados através de formulários
+app.use(express.urlencoded({ extend: false}));
+
 
 // ROTA PRINCIPAL
 app.get("/", function (req, res) {
