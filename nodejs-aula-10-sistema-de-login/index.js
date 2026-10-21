@@ -2,6 +2,10 @@
 import express from "express";
 // Importando arquivo de conexão do Sequelize
 import connection from "./config/sequelize-config.js";
+// Importando o Express-Session
+import session from "express-session";
+// Importando o Middleware de Autenticação
+import Auth from "./middlewares/Auth.js";
 // Iniciando o Express
 const app = express();
 
@@ -49,6 +53,14 @@ connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME}`).then(() => {
   console.log(`Ocorreu um erro ao criar o banco de dados. Erro: ${error}`);
 })
 
+// Configurando a SESSÃO DE USUÁRIO
+app.use(session({
+  secret: "segredoloja",
+  cookie: {maxAge: 360000},
+  saveUninitialized: false,
+  resave: false // Sessão expira em 1 hora
+}));
+
 // Aplicando as associações
 defineAssociations();
 
@@ -63,7 +75,7 @@ Promise.all([
 })
 
 // ROTA PRINCIPAL
-app.get("/", function (req, res) {
+app.get("/", Auth, function (req, res) {
   res.render("index");
 });
 

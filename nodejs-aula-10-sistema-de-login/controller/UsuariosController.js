@@ -8,22 +8,21 @@ import bcrypt from "bcrypt";
 
 // ROTA DE LOGIN
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", {
+    loggedOut: true,
+  });
+});
+
+// ROTA DE LOGOUT
+router.get("/logout", (req, res) => {
+  req.session.user = undefined;
+  // Limpa a sessão
+  res.redirect("/");
+  // Redireciona para a Home
 });
 
 // ROTA DE AUTENTICAÇÃO
 router.post("/autenticar", (req, res) => {
-  // Coletando os dados do formulário
-  const email = req.body.email;
-  const password = req.body.password;
-});
-
-// ROTA DE CADASTRO
-router.get("/cadastro", (req, res) => {
-  res.render("cadastro");
-});
-
-router.post("/cadastro/novo", (req, res) => {
   // Coletando os dados do formulário
   const email = req.body.email;
   const password = req.body.password;
@@ -37,7 +36,20 @@ router.post("/cadastro/novo", (req, res) => {
       // (password, usuario.password) -> password é o que o usuário digitou e usuario.password é a senha do banco. Estes dados serão comparados
       // SE A SENHA FOR VÁLIDA
       if (senhaCorreta) {
+        // AUTORIZA O LOGIN E CRIA A SESSÃO PARA O USUÁRIO
+        req.session.user = {
+          id: usuario.id,
+          email: usuario.email,
+        };
+
+        // TESTANDO A SESSÃO
+        // res.send(`Usuário logado:<br>
+        //   ID: ${req.session.user['id']} <br>
+        //   E-mail: ${req.session.user['email']}`);
+
+        // Redirecionar para a home após o login
         res.redirect("/");
+
         // SE A SENHA FOR INVÁLIDA
       } else {
         res.send(`Senha inválida!<br>
@@ -50,7 +62,20 @@ router.post("/cadastro/novo", (req, res) => {
         Verifique os dados e tente novamente!<br>
         <a href="/login">Voltar</a>`);
     }
+
   });
+});
+
+// ROTA DE CADASTRO
+router.get("/cadastro", (req, res) => {
+  res.render("cadastro", {
+    loggedOut: true,
+  });
+});
+
+router.post("/cadastro/novo", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
 
   // Verificando se o usuário já existe
   Usuario.findOne({ where: { email: email } }).then((usuario) => {
