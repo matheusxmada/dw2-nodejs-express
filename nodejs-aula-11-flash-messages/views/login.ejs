@@ -1,0 +1,68 @@
+<!-- Página de login -->
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/navbar.ejs') %>
+
+<!-- Exibindo a flash message -->
+ <% if (messages.danger) { %>
+    <div class="alert alert-danger flash-message alert-dismissible fade show">
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+        <%= messages.danger %>
+    </div>
+ <% } %>
+
+<div class="container col-12 col-md-4">
+    <!-- md -> medium -> telas desktop, com largura de apenas 4 colunas. Diferentemente da mobile, que ocupará 12. Bootstrap é mobile first, ou seja, primeiro é pensado no formato mobile -->
+    <div class="card mt-4">
+        <!-- mt -> margin-top -->
+        <div class="card-header">
+            <h1>Login de Administrador</h1>
+        </div>
+        <div>
+            <div class="card-body m-auto">
+                <!-- m-auto -> margem automática centralizada -->
+                 <p style="color: red; font-size: 0.7em">Você precisa estar logado para acessar os recursos do painel administrativo.</p>
+                <!-- Formulátio de login -->
+                <form action="/autenticar" method="POST">
+                    <!-- Usaremos o método POST para enviar os dados de forma oculta, sem aparecer na URL da página. Diferentemente do método GET. -->
+
+                     <!-- E-mail -->
+                     <label for="email">E-mail</label>
+                     <input for="email" class="form-control" name="email" id="email" placeholder="Digite seu e-mail" required>
+<!--
+for: Conecta o texto do rótulo diretamente à caixa de entrada para facilitar o clique.
+class: Aplica o visual moderno e a formatação do framework Bootstrap ao campo.
+name: Identifica o dado do campo quando as informações são enviadas para o servidor.
+id: Funciona como o "RG" único do campo para que o código possa encontrá-lo na página.
+placeholder: Mostra uma dica ou exemplo em texto claro dentro da caixa antes de você digitar.
+required: Torna o preenchimento do campo obrigatório antes que o formulário possa ser enviado.
+ -->
+                    <!-- Senha -->
+                     <label for="password">Senha</label>
+                     <input type="password" class="form-control" name="password" id="password" placeholder="Digite sua senha" required>
+
+                     <!-- Botão de enviar -->
+                      <button type="submit" class="btn btn-success btn-block mt-2 w-100">Entrar</button>
+<!--
+type="submit": Define que o botão serve para enviar todos os dados preenchidos no formulário.
+class="btn": Aplica a estrutura e o estilo básico de um botão usando o framework Bootstrap.
+class="btn-success": Define a cor verde para o botão, sinalizando uma ação positiva.
+class="btn-block": Faz o botão ocupar toda a largura disponível da tela ou do container onde está.
+w-100: width (largura) definida em 100%.
+ -->
+                     
+                </form>
+                <hr>
+                <h6>Não possui conta? <a href="/cadastro">Cadastre-se!</a></h6>
+<!-- 
+<hr>: Cria uma linha horizontal na tela para separar visualmente os blocos de conteúdo.
+<h6>: Define um título de tamanho pequeno, organizando a hierarquia do texto na página.
+<a>: Cria um link clicável que direciona o usuário para outra página ou seção.
+href="/cadastro": Define o endereço ou a rota da página de cadastro para onde o usuário será levado ao clicar no link.                
+-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include ('partials/footer.ejs') %>
